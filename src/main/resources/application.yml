@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: api-gateway
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: ${SSL_KEY_STORE_PATH}   
+    key-store-password: ${SSL_KEY_STORE_PASSWORD}
+    key-store-type: PKCS12
+    key-alias: ${SSL_KEY_ALIAS}
+
+student-service:
+  uri: http://localhost:8081
+  prefix: /api
+  path: /students/**
+  
+bucket4j-rate-limiter:
+  capacity: 10
+  refill-tokens: 1
+  refill-duration-seconds: 1
+  
+jwt:
+  secret: O1nXf6OaRCln2AtB9nFZ4wZr1Nf7P7L7O8U7vZ/sa3g=123456
+  expiration: 3600
+# Log Spring Security
+# logging:
+  # level:
+    # org.springframework.security: DEBUG
+    # org.springframework.web: DEBUG
+    # org.springframework.security.web.server: DEBUG
